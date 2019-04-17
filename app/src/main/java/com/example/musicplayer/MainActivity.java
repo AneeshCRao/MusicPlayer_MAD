@@ -22,7 +22,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private SectionsPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
 
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
 

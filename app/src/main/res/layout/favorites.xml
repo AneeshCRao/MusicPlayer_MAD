@@ -4,12 +4,10 @@
     android:layout_height="match_parent">
 
 
-    <TextView
+    <ListView
+        android:id="@+id/playlist_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Favorites"
-        android:textSize="50dp"
-        />
+        android:layout_height="500dp"/>
 
 
 </LinearLayout>

@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         displayList = new ArrayList<>();
@@ -97,14 +99,18 @@ public class MainActivity extends AppCompatActivity {
                 String filePath = "";
 
                 if (FavoritesFragment.isPlayingFrom) {
-                    if (index < MainActivity.Fav_pathList.size())
+                    if (index < MainActivity.Fav_pathList.size()) {
                         filePath = MainActivity.Fav_pathList.get(index);
+                        FavoritesFragment.currentIndex = index;
+                    }
                     else
                         return;
                 }
                 else {
-                    if (index < MainActivity.pathList.size())
+                    if (index < MainActivity.pathList.size()) {
                         filePath = MainActivity.pathList.get(index);
+                        SongSelectFragment.currentIndex = index;
+                    }
                     else
                         return;
                 }
@@ -121,6 +127,31 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+
+                String songName, artistName;
+
+                if (FavoritesFragment.isPlayingFrom) {
+                    songName = MainActivity.Fav_songNamesList.get(FavoritesFragment.currentIndex);
+                    String temp = MainActivity.Fav_displayList.get(FavoritesFragment.currentIndex);
+                    int x = temp.indexOf("\n");
+                    artistName = temp.substring(x + 1);
+                }
+                else {
+                    songName = MainActivity.songNamesList.get(SongSelectFragment.currentIndex);
+                    String temp = MainActivity.displayList.get(SongSelectFragment.currentIndex);
+                    int x = temp.indexOf("\n");
+                    artistName = temp.substring(x + 1);
+                }
+
+                PlayerFragment.songNameTV.setText(songName);
+                PlayerFragment.artistNameTV.setText(artistName);
+
+                if (songName.length() > 25)
+                    PlayerFragment.songNameTV.setTextSize(20);
+                else PlayerFragment.songNameTV.setTextSize(30);
+
+
+
             }
         });
 

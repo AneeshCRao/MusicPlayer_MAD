@@ -29,6 +29,8 @@ public class PlayerFragment extends Fragment {
 
     public static SeekBar seekBar;
 
+    public static boolean isPaused = true;
+
     static Handler handler;
     static Runnable runnable;
 
@@ -78,29 +80,18 @@ public class PlayerFragment extends Fragment {
 
 
 
-
-
-
-        if (MainActivity.mediaPlayer.isPlaying())
-            btnPlay.setText("PAUSE");
-
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Button b = (Button)view;
-                Drawable pause = getResources().getDrawable(R.drawable.pausebutton);
-                Drawable play = getResources().getDrawable(R.drawable.playbutton);
-                Log.d("backis",b.getBackground().toString());
-                Log.d("backis",pause.toString());
-                Log.d("backis",play.toString());
-                if ( b.getBackground().equals(play)) {
+                if (isPaused) {
                     MainActivity.mediaPlayer.start();
+                    isPaused = false;
                     b.setBackgroundResource(R.drawable.pausebutton);
-//                    b.setText("PAUSE");
                 }
                 else {
                     MainActivity.mediaPlayer.pause();
-//                    b.setText("PLAY");
+                    isPaused = true;
                     b.setBackgroundResource(R.drawable.playbutton);
                 }
             }
@@ -125,6 +116,7 @@ public class PlayerFragment extends Fragment {
                         if (MainActivity.mediaPlayer.isPlaying())
                             MainActivity.mediaPlayer.stop();
                         String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
+                        SongSelectFragment.listView.setSelection(SongSelectFragment.currentIndex);
                         try {
                             MainActivity.mediaPlayer.reset();
                             MainActivity.mediaPlayer.setDataSource(filePath);
@@ -141,6 +133,7 @@ public class PlayerFragment extends Fragment {
                         if (MainActivity.mediaPlayer.isPlaying())
                             MainActivity.mediaPlayer.stop();
                         String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
+                        FavoritesFragment.playlist_list.setSelection(FavoritesFragment.currentIndex);
                         try {
                             MainActivity.mediaPlayer.reset();
                             MainActivity.mediaPlayer.setDataSource(filePath);
@@ -170,6 +163,7 @@ public class PlayerFragment extends Fragment {
                     if (MainActivity.mediaPlayer.isPlaying())
                         MainActivity.mediaPlayer.stop();
                     String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
+                    SongSelectFragment.listView.setSelection(SongSelectFragment.currentIndex);
                     try {
                         MainActivity.mediaPlayer.reset();
                         MainActivity.mediaPlayer.setDataSource(filePath);
@@ -186,6 +180,7 @@ public class PlayerFragment extends Fragment {
                     if (MainActivity.mediaPlayer.isPlaying())
                         MainActivity.mediaPlayer.stop();
                     String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
+                    FavoritesFragment.playlist_list.setSelection(FavoritesFragment.currentIndex);
                     try {
                         MainActivity.mediaPlayer.reset();
                         MainActivity.mediaPlayer.setDataSource(filePath);

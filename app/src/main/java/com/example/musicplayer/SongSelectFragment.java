@@ -2,6 +2,7 @@ package com.example.musicplayer;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,10 +29,11 @@ public class SongSelectFragment extends Fragment {
 
     public static boolean isPlayingFrom = false;
 
-    ListView listView;
+    public static ListView listView;
     ArrayAdapter<String> adapter;
 
     int titleIndex, songPathIndex, artistIndex;
+
 
     public static int currentIndex = 0;
 
@@ -61,6 +63,7 @@ public class SongSelectFragment extends Fragment {
         int list_index = (int)info.id;
         switch(item.getItemId()) {
             case R.id.play:
+                listView.setSelection(list_index);
                 String filePath = MainActivity.pathList.get(list_index);
                 if (MainActivity.mediaPlayer.isPlaying())
                     MainActivity.mediaPlayer.stop();
@@ -70,7 +73,8 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.prepare();
                     FavoritesFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.isPaused = false;
+                    PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                     PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
                     PlayerFragment.playCycle();
@@ -108,7 +112,8 @@ public class SongSelectFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 currentIndex = i;
                 String filePath = MainActivity.pathList.get(i);
-
+                listView.setSelection(i);
+                MainActivity.currentView = view;
                 if (MainActivity.mediaPlayer.isPlaying())
                     MainActivity.mediaPlayer.stop();
                 try {
@@ -117,7 +122,8 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.prepare();
                     FavoritesFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.isPaused = false;
+                    PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                     PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
                     PlayerFragment.playCycle();

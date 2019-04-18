@@ -2,6 +2,7 @@ package com.example.musicplayer;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
+    public static View currentView;
+    public static int selectedColor;
+    public static int unSelectedColor;
 
     //SongSelect variables
     static ArrayList<String> displayList;          //List to be displayed (Song name + artist name)
@@ -70,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         songNamesList = new ArrayList<>();
 
         MainActivity.mediaPlayer = new MediaPlayer();
+        selectedColor = Color.CYAN;
+        unSelectedColor = Color.WHITE;
+        currentView = new TextView(this);
 
         Fav_displayList = new ArrayList<>();
         Fav_pathList = new ArrayList<>();
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     if (index < MainActivity.Fav_pathList.size()) {
                         filePath = MainActivity.Fav_pathList.get(index);
                         FavoritesFragment.currentIndex = index;
+                        FavoritesFragment.playlist_list.setSelection(index);
                     }
                     else
                         return;
@@ -110,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     if (index < MainActivity.pathList.size()) {
                         filePath = MainActivity.pathList.get(index);
                         SongSelectFragment.currentIndex = index;
+                        SongSelectFragment.listView.setSelection(index);
                     }
                     else
                         return;
@@ -119,8 +128,9 @@ public class MainActivity extends AppCompatActivity {
                     mediaPlayer.reset();
                     mediaPlayer.setDataSource(filePath);
                     mediaPlayer.prepare();
-                    PlayerFragment.btnPlay.setText("PAUSE");
                     PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+                    PlayerFragment.isPaused = false;
+                    PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                     MainActivity.mediaPlayer.start();
                     PlayerFragment.playCycle();
                 }catch(Exception e) {

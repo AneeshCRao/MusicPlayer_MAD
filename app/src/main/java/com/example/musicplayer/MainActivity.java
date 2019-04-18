@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         pathList = new ArrayList<>();
         songNamesList = new ArrayList<>();
 
+        MainActivity.mediaPlayer = new MediaPlayer();
+
         Fav_displayList = new ArrayList<>();
         Fav_pathList = new ArrayList<>();
         Fav_songNamesList = new ArrayList<>();
@@ -80,6 +82,49 @@ public class MainActivity extends AppCompatActivity {
             TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
             tabLayout.setupWithViewPager(mViewPager);
         }
+
+
+
+        //When song finishes, play next song in list
+        MainActivity.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                int index = SongSelectFragment.currentIndex;
+                if (FavoritesFragment.isPlayingFrom)
+                    index = FavoritesFragment.currentIndex;
+                index = index + 1;
+
+                String filePath = "";
+
+                if (FavoritesFragment.isPlayingFrom) {
+                    if (index < MainActivity.Fav_pathList.size())
+                        filePath = MainActivity.Fav_pathList.get(index);
+                    else
+                        return;
+                }
+                else {
+                    if (index < MainActivity.pathList.size())
+                        filePath = MainActivity.pathList.get(index);
+                    else
+                        return;
+                }
+
+                try {
+                    mediaPlayer.reset();
+                    mediaPlayer.setDataSource(filePath);
+                    mediaPlayer.prepare();
+                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+                    MainActivity.mediaPlayer.start();
+                    PlayerFragment.playCycle();
+                }catch(Exception e) {
+                    Toast.makeText(getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
 
 
     }

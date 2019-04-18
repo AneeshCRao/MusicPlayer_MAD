@@ -90,7 +90,7 @@ public class PlayerFragment extends Fragment {
                     b.setText("PAUSE");
                 }
                 else {
-                    MainActivity.mediaPlayer.stop();
+                    MainActivity.mediaPlayer.pause();
                     b.setText("PLAY");
                 }
             }

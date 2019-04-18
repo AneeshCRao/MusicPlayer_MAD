@@ -1,6 +1,5 @@
 package com.example.musicplayer;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class FavoritesFragment extends Fragment {
     private static final String TAG = "FavoritesFragment";
@@ -32,7 +29,7 @@ public class FavoritesFragment extends Fragment {
 
         playlist_list = (ListView)view.findViewById(R.id.playlist_list);
 
-        MainActivity.Fav_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, MainActivity.Fav_displayList);
+        MainActivity.Fav_adapter = new ArrayAdapter<String>(getContext(), R.layout.list_layout,R.id.textView1, MainActivity.Fav_displayList);
         playlist_list.setAdapter(MainActivity.Fav_adapter);
 
         registerForContextMenu(playlist_list);

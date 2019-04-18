@@ -5,5 +5,5 @@
         android:title="Play"/>
     <item
         android:id="@+id/add_playlist"
-        android:title="Add to playlist"/>
+        android:title="Add to Favorites"/>
 </menu>

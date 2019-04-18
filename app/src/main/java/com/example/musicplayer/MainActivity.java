@@ -28,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayAdapter<String> Fav_adapter;
 
 
+    public static Timer timer;
 
 
 
@@ -114,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new FavoritesFragment(), "FAVORITES");
         adapter.addFragment(new GuessSongFragment(), "SHOBHIT");
         viewPager.setAdapter(adapter);
+
+
     }
+
+
+
+
+
+
+
 
 }

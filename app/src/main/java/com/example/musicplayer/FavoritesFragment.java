@@ -37,34 +37,35 @@ public class FavoritesFragment extends Fragment {
 
         registerForContextMenu(playlist_list);
 
-//
-//        //When song finishes, play next song in list
-        MainActivity.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                currentIndex = (currentIndex + 1) % MainActivity.Fav_songNamesList.size();
-                String filePath = MainActivity.Fav_pathList.get(currentIndex);
-                try {
-                    MainActivity.mediaPlayer.reset();
-                    MainActivity.mediaPlayer.setDataSource(filePath);
-                    MainActivity.mediaPlayer.prepare();
-                    SongSelectFragment.isPlayingFrom = false;
-                    isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
-                    MainActivity.mediaPlayer.start();
-                }catch(Exception e) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-            }
-        });
+        //When song finishes, play next song in list
+//        MainActivity.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mediaPlayer) {
+//                currentIndex = (currentIndex + 1) % MainActivity.Fav_songNamesList.size();
+//                String filePath = MainActivity.Fav_pathList.get(currentIndex);
+//                try {
+//                    MainActivity.mediaPlayer.reset();
+//                    MainActivity.mediaPlayer.setDataSource(filePath);
+//                    MainActivity.mediaPlayer.prepare();
+//                    SongSelectFragment.isPlayingFrom = false;
+//                    isPlayingFrom = true;
+//                    PlayerFragment.btnPlay.setText("PAUSE");
+//                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+//                    MainActivity.mediaPlayer.start();
+//                    PlayerFragment.playCycle();
+//                }catch(Exception e) {
+//                    Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 //
         //On clicking, play from that song
         playlist_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 currentIndex = i;
-                if (MainActivity.mediaPlayer.isPlaying())
+                if (MainActivity.mediaPlayer.isPlaying() )
                     MainActivity.mediaPlayer.stop();
                 String filePath = MainActivity.Fav_pathList.get(currentIndex);
                 try {
@@ -74,8 +75,12 @@ public class FavoritesFragment extends Fragment {
                     SongSelectFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
                     PlayerFragment.btnPlay.setText("PAUSE");
+//                    PlayerFragment.seekBar.setProgress(0);
+//                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
+//                    PlayerFragment.playCycle();
                 }catch(Exception e) {
+                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT);
                     e.printStackTrace();
                 }
             }
@@ -109,7 +114,9 @@ public class FavoritesFragment extends Fragment {
                     SongSelectFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
                     PlayerFragment.btnPlay.setText("PAUSE");
+//                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
+//                    PlayerFragment.playCycle();
                 }catch(Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
                 }
@@ -139,7 +146,9 @@ public class FavoritesFragment extends Fragment {
                         SongSelectFragment.isPlayingFrom = false;
                         isPlayingFrom = true;
                         PlayerFragment.btnPlay.setText("PAUSE");
+//                        PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                         MainActivity.mediaPlayer.start();
+//                        PlayerFragment.playCycle();
                     }catch(Exception e) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
                     }

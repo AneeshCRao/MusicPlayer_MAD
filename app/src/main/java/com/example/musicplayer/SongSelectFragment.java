@@ -56,8 +56,10 @@ public class SongSelectFragment extends Fragment {
                     mediaPlayer.prepare();
                     FavoritesFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
-                    mediaPlayer.start();
+//                    PlayerFragment.btnPlay.setText("PAUSE");
+//                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+//                    MainActivity.mediaPlayer.start();
+//                    PlayerFragment.playCycle();
                 }catch(Exception e) {
                     Toast.makeText(getContext(), "Error",Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -91,8 +93,10 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.prepare();
                     FavoritesFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
-                    MainActivity.mediaPlayer.start();
+//                    PlayerFragment.btnPlay.setText("PAUSE");
+//                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+//                    MainActivity.mediaPlayer.start();
+//                    PlayerFragment.playCycle();
                 }catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -125,8 +129,6 @@ public class SongSelectFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView tv = (TextView)view;
-                String s = tv.getText().toString();
                 currentIndex = i;
                 String filePath = MainActivity.pathList.get(i);
 
@@ -138,8 +140,10 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.prepare();
                     FavoritesFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
-                    MainActivity.mediaPlayer.start();
+//                    PlayerFragment.btnPlay.setText("PAUSE");
+//                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+//                    MainActivity.mediaPlayer.start();
+//                    PlayerFragment.playCycle();
                 }catch(Exception e) {
                     e.printStackTrace();
                 }

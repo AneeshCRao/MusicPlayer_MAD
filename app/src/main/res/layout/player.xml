@@ -42,4 +42,22 @@
         android:outlineSpotShadowColor="@color/design_default_color_primary_dark"
         />
 
+    <TextView
+        android:id="@+id/timerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="40dp"
+        android:text="00:00"/>
+
+    <TextView
+        android:id="@+id/fullTimerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="305dp"
+        android:text="00:00"/>
+
+
+
 </RelativeLayout>

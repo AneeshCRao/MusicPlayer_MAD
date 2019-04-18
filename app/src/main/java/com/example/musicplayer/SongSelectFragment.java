@@ -26,13 +26,14 @@ import java.util.ArrayList;
 public class SongSelectFragment extends Fragment {
     private static final String TAG = "SongSelectFragment";
 
+    public static boolean isPlayingFrom = false;
 
     ListView listView;
     ArrayAdapter<String> adapter;
 
     int titleIndex, songPathIndex, artistIndex;
 
-    static int currentIndex = 0;
+    public static int currentIndex = 0;
 
 
     @Nullable
@@ -53,6 +54,9 @@ public class SongSelectFragment extends Fragment {
                     mediaPlayer.reset();
                     mediaPlayer.setDataSource(filePath);
                     mediaPlayer.prepare();
+                    FavoritesFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
                     mediaPlayer.start();
                 }catch(Exception e) {
                     Toast.makeText(getContext(), "Error",Toast.LENGTH_SHORT).show();
@@ -85,6 +89,9 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    FavoritesFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
                     MainActivity.mediaPlayer.start();
                 }catch(Exception e) {
                     e.printStackTrace();
@@ -129,6 +136,9 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    FavoritesFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
                     MainActivity.mediaPlayer.start();
                 }catch(Exception e) {
                     e.printStackTrace();

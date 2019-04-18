@@ -22,7 +22,8 @@ public class FavoritesFragment extends Fragment {
 
     ListView playlist_list;
 
-    static int currentIndex = 0;
+    public static int currentIndex = 0;
+    public static boolean isPlayingFrom = false;
 
     @Nullable
     @Override
@@ -47,6 +48,9 @@ public class FavoritesFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    SongSelectFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
                     MainActivity.mediaPlayer.start();
                 }catch(Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
@@ -67,6 +71,9 @@ public class FavoritesFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    SongSelectFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
                     MainActivity.mediaPlayer.start();
                 }catch(Exception e) {
                     e.printStackTrace();
@@ -99,6 +106,9 @@ public class FavoritesFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    SongSelectFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
                     MainActivity.mediaPlayer.start();
                 }catch(Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
@@ -126,6 +136,9 @@ public class FavoritesFragment extends Fragment {
                         MainActivity.mediaPlayer.reset();
                         MainActivity.mediaPlayer.setDataSource(filePath);
                         MainActivity.mediaPlayer.prepare();
+                        SongSelectFragment.isPlayingFrom = false;
+                        isPlayingFrom = true;
+                        PlayerFragment.btnPlay.setText("PAUSE");
                         MainActivity.mediaPlayer.start();
                     }catch(Exception e) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();

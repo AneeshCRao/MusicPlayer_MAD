@@ -14,6 +14,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.nio.file.attribute.PosixFileAttributeView;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +27,8 @@ public class PlayerFragment extends Fragment {
 
     public static TextView timerTV;
     public static TextView fullTimerTV;
+    static TextView artistNameTV;
+    static TextView songNameTV;
 
     public static SeekBar seekBar;
 
@@ -44,6 +48,8 @@ public class PlayerFragment extends Fragment {
         seekBar = (SeekBar)view.findViewById(R.id.seekBar);
         timerTV = (TextView)view.findViewById(R.id.timerTV);
         fullTimerTV = (TextView)view.findViewById(R.id.fullTimerTV);
+        artistNameTV = (TextView)view.findViewById(R.id.ArtistNameTV);
+        songNameTV = (TextView)view.findViewById(R.id.SongNameTV);
 
 
         handler = new Handler();
@@ -225,11 +231,34 @@ public class PlayerFragment extends Fragment {
         String fullTime = String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(full) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(full)), TimeUnit.MILLISECONDS.toSeconds(full) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(full)));
         fullTimerTV.setText(fullTime);
 
-
         int curr = MainActivity.mediaPlayer.getCurrentPosition();
         seekBar.setProgress(curr);
         String currTime = String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(curr) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(curr)), TimeUnit.MILLISECONDS.toSeconds(curr) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(curr)));
         timerTV.setText(currTime);
+
+        String artistName, songName;
+
+        if (FavoritesFragment.isPlayingFrom) {
+            songName = MainActivity.Fav_songNamesList.get(FavoritesFragment.currentIndex);
+            String temp = MainActivity.Fav_displayList.get(FavoritesFragment.currentIndex);
+            int x = temp.indexOf("\n");
+            artistName = temp.substring(x + 1);
+        }
+        else {
+            songName = MainActivity.songNamesList.get(SongSelectFragment.currentIndex);
+            String temp = MainActivity.displayList.get(SongSelectFragment.currentIndex);
+            int x = temp.indexOf("\n");
+            artistName = temp.substring(x + 1);
+        }
+
+        songNameTV.setText(songName);
+        artistNameTV.setText(artistName);
+
+        if (songName.length() > 25)
+            songNameTV.setTextSize(20);
+        else songNameTV.setTextSize(30);
+
+
 
         if (MainActivity.mediaPlayer.isPlaying()) {
             runnable = new Runnable() {

@@ -1,12 +1,10 @@
 package com.example.musicplayer;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +60,7 @@ public class PlayerFragment extends Fragment {
                     MainActivity.mediaPlayer.seekTo(progress);
                     if (!MainActivity.mediaPlayer.isPlaying()) {
                         MainActivity.mediaPlayer.start();
-                        btnPlay.setText("PAUSE");
+//                        btnPlay.setText("PAUSE");
                     }
                 }
             }

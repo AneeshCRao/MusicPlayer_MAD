@@ -1,6 +1,8 @@
 package com.example.musicplayer;
 
 import android.os.AsyncTask;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -81,8 +83,15 @@ class YoutubeData extends AsyncTask<String, Void, JSONObject> {
             ans=vid;
             Log.d("video_id",ans);
             String fromthere=tv.getText().toString();
-            fromthere = fromthere + "\nListen to it here: \"https://www.youtube.com/watch/"+ans+"\"";
-            tv.setText(fromthere);
+            fromthere = fromthere + "Listen to it here: \"https://www.youtube.com/watch/"+ans+"\"";
+
+            int a1=fromthere.indexOf("Album");
+            int ar1=fromthere.indexOf("Artist");
+            SpannableStringBuilder str = new SpannableStringBuilder(fromthere);
+            str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), a1, a1+5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), ar1, ar1+6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tv.setText(str);
         }catch (Exception e){
             e.printStackTrace();
         }

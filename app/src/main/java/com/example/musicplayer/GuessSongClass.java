@@ -1,6 +1,8 @@
 package com.example.musicplayer;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -41,7 +43,7 @@ public class GuessSongClass {
                                 String alname=(String)jo1.get("album_name");
                                 String arname=(String)jo1.get("artist_name");
 
-                                ans=ans+"Track: "+tname+"\nAlbum: "+alname+"\nArtist: "+arname+"\n\n";
+                                ans=ans+"Track\n"+tname+"\nAlbum\n"+alname+"\nArtist\n"+arname+"\n\n";
                                 if(i==0){
                                     v1.setAlbum(alname);
                                     v1.setArtist(arname);
@@ -50,7 +52,10 @@ public class GuessSongClass {
 
                             }
 
+
                             tv.setText(ans);
+
+//                            tv.setText(Html.fromHtml(ans));
                             Log.d("waiting","3");
                             YoutubeData ytd = new YoutubeData(tv);
 

@@ -2,15 +2,12 @@ package com.example.musicplayer;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,10 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class SongSelectFragment extends Fragment {
     private static final String TAG = "SongSelectFragment";
@@ -104,7 +98,7 @@ public class SongSelectFragment extends Fragment {
 
     public void DisplaySongs () {
         getMusic();
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, MainActivity.displayList);
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.list_layout,R.id.textView1, MainActivity.displayList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

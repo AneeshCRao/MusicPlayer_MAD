@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/c">
 
 
     <EditText
@@ -12,7 +13,9 @@
         android:layout_margin="10dp"
         android:background="@drawable/rectangle27"
         android:hint="Enter lyric"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"/>
 
     <EditText
         android:id="@+id/guess_artist"
@@ -21,6 +24,8 @@
         android:layout_margin="10dp"
         android:background="@drawable/rectangle27"
         android:hint="Enter artist name"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:padding="5dp" />
 
     <Button
@@ -34,11 +39,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_margin="10dp"
         android:textSize="25sp"
         android:id="@+id/guess_result"
-
+        android:textAlignment="center"
         android:autoLink="web"
+        android:textColor="#FFFFFF"
         />
 
 

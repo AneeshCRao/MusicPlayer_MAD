@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.nio.file.attribute.PosixFileAttributeView;
 
@@ -20,6 +21,7 @@ public class PlayerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.player, container, false);
+
 
 
         btnPlay = (Button)view.findViewById(R.id.btnPlay);
@@ -43,51 +45,101 @@ public class PlayerFragment extends Fragment {
                 }
             }
         });
+
+
+
+
+        btnRewind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long playerPosition = MainActivity.mediaPlayer.getCurrentPosition();
+
+                if (playerPosition > 2500) {
+                    MainActivity.mediaPlayer.pause();
+                    MainActivity.mediaPlayer.seekTo(0);
+                    MainActivity.mediaPlayer.start();
+                }
+                else {
+                    if (SongSelectFragment.isPlayingFrom) {
+                        SongSelectFragment.currentIndex -= 1;
+                        if (MainActivity.mediaPlayer.isPlaying())
+                            MainActivity.mediaPlayer.stop();
+                        String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
+                        try {
+                            MainActivity.mediaPlayer.reset();
+                            MainActivity.mediaPlayer.setDataSource(filePath);
+                            MainActivity.mediaPlayer.prepare();
+                            FavoritesFragment.isPlayingFrom = false;
+                            SongSelectFragment.isPlayingFrom = true;
+                            MainActivity.mediaPlayer.start();
+                        }catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        FavoritesFragment.currentIndex -= 1;
+                        if (MainActivity.mediaPlayer.isPlaying())
+                            MainActivity.mediaPlayer.stop();
+                        String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
+                        try {
+                            MainActivity.mediaPlayer.reset();
+                            MainActivity.mediaPlayer.setDataSource(filePath);
+                            MainActivity.mediaPlayer.prepare();
+                            SongSelectFragment.isPlayingFrom = false;
+                            FavoritesFragment.isPlayingFrom = true;
+                            MainActivity.mediaPlayer.start();
+                        }catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+
+
+            }
+        });
+
+
+
+
 //
-//        btnRewind.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//
-//        btnFast.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (SongSelectFragment.isPlayingFrom) {
-//                    SongSelectFragment.currentIndex += 1;
-//                    if (MainActivity.mediaPlayer.isPlaying())
-//                        MainActivity.mediaPlayer.stop();
-//                    String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
-//                    try {
-//                        MainActivity.mediaPlayer.reset();
-//                        MainActivity.mediaPlayer.setDataSource(filePath);
-//                        MainActivity.mediaPlayer.prepare();
-//                        FavoritesFragment.isPlayingFrom = false;
-//                        SongSelectFragment.isPlayingFrom = true;
-//                        MainActivity.mediaPlayer.start();
-//                    }catch(Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                else {
-//                    FavoritesFragment.currentIndex += 1;
-//                    if (MainActivity.mediaPlayer.isPlaying())
-//                        MainActivity.mediaPlayer.stop();
-//                    String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
-//                    try {
-//                        MainActivity.mediaPlayer.reset();
-//                        MainActivity.mediaPlayer.setDataSource(filePath);
-//                        MainActivity.mediaPlayer.prepare();
-//                        SongSelectFragment.isPlayingFrom = false;
-//                        FavoritesFragment.isPlayingFrom = true;
-//                        MainActivity.mediaPlayer.start();
-//                    }catch(Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
+        btnFast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SongSelectFragment.isPlayingFrom) {
+                    SongSelectFragment.currentIndex += 1;
+                    if (MainActivity.mediaPlayer.isPlaying())
+                        MainActivity.mediaPlayer.stop();
+                    String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
+                    try {
+                        MainActivity.mediaPlayer.reset();
+                        MainActivity.mediaPlayer.setDataSource(filePath);
+                        MainActivity.mediaPlayer.prepare();
+                        FavoritesFragment.isPlayingFrom = false;
+                        SongSelectFragment.isPlayingFrom = true;
+                        MainActivity.mediaPlayer.start();
+                    }catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    FavoritesFragment.currentIndex += 1;
+                    if (MainActivity.mediaPlayer.isPlaying())
+                        MainActivity.mediaPlayer.stop();
+                    String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
+                    try {
+                        MainActivity.mediaPlayer.reset();
+                        MainActivity.mediaPlayer.setDataSource(filePath);
+                        MainActivity.mediaPlayer.prepare();
+                        SongSelectFragment.isPlayingFrom = false;
+                        FavoritesFragment.isPlayingFrom = true;
+                        MainActivity.mediaPlayer.start();
+                    }catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
 
 

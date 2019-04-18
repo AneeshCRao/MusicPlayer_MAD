@@ -236,6 +236,7 @@ public class PlayerFragment extends Fragment {
         fullTimerTV.setText(fullTime);
 
         int curr = MainActivity.mediaPlayer.getCurrentPosition();
+        PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
         seekBar.setProgress(curr);
         String currTime = String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(curr) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(curr)), TimeUnit.MILLISECONDS.toSeconds(curr) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(curr)));
         timerTV.setText(currTime);
@@ -254,7 +255,6 @@ public class PlayerFragment extends Fragment {
             int x = temp.indexOf("\n");
             artistName = temp.substring(x + 1);
         }
-
         songNameTV.setText(songName);
         artistNameTV.setText(artistName);
 

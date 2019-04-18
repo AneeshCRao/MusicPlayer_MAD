@@ -1,22 +1,19 @@
 package com.example.musicplayer;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.nio.file.attribute.PosixFileAttributeView;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -91,13 +88,20 @@ public class PlayerFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Button b = (Button)view;
-                if (b.getText().equals("PLAY")) {
+                Drawable pause = getResources().getDrawable(R.drawable.pausebutton);
+                Drawable play = getResources().getDrawable(R.drawable.playbutton);
+                Log.d("backis",b.getBackground().toString());
+                Log.d("backis",pause.toString());
+                Log.d("backis",play.toString());
+                if ( b.getBackground().equals(play)) {
                     MainActivity.mediaPlayer.start();
-                    b.setText("PAUSE");
+                    b.setBackgroundResource(R.drawable.pausebutton);
+//                    b.setText("PAUSE");
                 }
                 else {
                     MainActivity.mediaPlayer.pause();
-                    b.setText("PLAY");
+//                    b.setText("PLAY");
+                    b.setBackgroundResource(R.drawable.playbutton);
                 }
             }
         });

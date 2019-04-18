@@ -5,30 +5,37 @@
     android:layout_height="match_parent">
 
 
-
-
     <EditText
+        android:id="@+id/guess_lyric"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/rectangle27"
         android:hint="Enter lyric"
-        android:id="@+id/guess_lyric"/>
+        android:padding="5dp" />
 
     <EditText
+        android:id="@+id/guess_artist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/guess_artist"
-        android:hint="Enter artist name"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/rectangle27"
+        android:hint="Enter artist name"
+        android:padding="5dp" />
 
     <Button
+        android:id="@+id/guess_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/gobutton"
         android:text="Go"
-        android:id="@+id/guess_bt" />
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Shobhit123"
+
         android:textSize="12sp"
         android:id="@+id/guess_result"
 

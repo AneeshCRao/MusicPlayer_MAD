@@ -116,6 +116,7 @@ public class PlayerFragment extends Fragment {
                         if (MainActivity.mediaPlayer.isPlaying())
                             MainActivity.mediaPlayer.stop();
                         String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
+                        SongSelectFragment.listView.setSelection(SongSelectFragment.currentIndex);
                         try {
                             MainActivity.mediaPlayer.reset();
                             MainActivity.mediaPlayer.setDataSource(filePath);
@@ -132,6 +133,7 @@ public class PlayerFragment extends Fragment {
                         if (MainActivity.mediaPlayer.isPlaying())
                             MainActivity.mediaPlayer.stop();
                         String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
+                        FavoritesFragment.playlist_list.setSelection(FavoritesFragment.currentIndex);
                         try {
                             MainActivity.mediaPlayer.reset();
                             MainActivity.mediaPlayer.setDataSource(filePath);
@@ -161,6 +163,7 @@ public class PlayerFragment extends Fragment {
                     if (MainActivity.mediaPlayer.isPlaying())
                         MainActivity.mediaPlayer.stop();
                     String filePath = MainActivity.pathList.get(SongSelectFragment.currentIndex);
+                    SongSelectFragment.listView.setSelection(SongSelectFragment.currentIndex);
                     try {
                         MainActivity.mediaPlayer.reset();
                         MainActivity.mediaPlayer.setDataSource(filePath);
@@ -177,6 +180,7 @@ public class PlayerFragment extends Fragment {
                     if (MainActivity.mediaPlayer.isPlaying())
                         MainActivity.mediaPlayer.stop();
                     String filePath = MainActivity.Fav_pathList.get(FavoritesFragment.currentIndex);
+                    FavoritesFragment.playlist_list.setSelection(FavoritesFragment.currentIndex);
                     try {
                         MainActivity.mediaPlayer.reset();
                         MainActivity.mediaPlayer.setDataSource(filePath);

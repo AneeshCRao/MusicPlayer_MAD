@@ -16,7 +16,7 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:text="Song Name"/>
+        android:text="Song Title"/>
 
     <TextView
         android:id="@+id/ArtistNameTV"
@@ -25,7 +25,7 @@
         android:layout_marginTop="160dp"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
-        android:text="Song Name"/>
+        android:text="Artist"/>
 
 
 

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class FavoritesFragment extends Fragment {
     private static final String TAG = "FavoritesFragment";
 
-    ListView playlist_list;
+    public static ListView playlist_list;
 
     public static int currentIndex = 0;
     public static boolean isPlayingFrom = false;
@@ -45,6 +45,7 @@ public class FavoritesFragment extends Fragment {
                 if (MainActivity.mediaPlayer.isPlaying() )
                     MainActivity.mediaPlayer.stop();
                 String filePath = MainActivity.Fav_pathList.get(currentIndex);
+                playlist_list.setSelection(currentIndex);
                 try {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
@@ -83,6 +84,7 @@ public class FavoritesFragment extends Fragment {
         switch(item.getItemId()) {
             case R.id.play_playlist:
                 String filePath = MainActivity.Fav_pathList.get(list_index);
+                playlist_list.setSelection(list_index);
                 if (MainActivity.mediaPlayer.isPlaying())
                     MainActivity.mediaPlayer.stop();
                 try {
@@ -118,6 +120,7 @@ public class FavoritesFragment extends Fragment {
                 if (currentIndex == list_index) {       //Current playing song is removed
                     currentIndex = (currentIndex + 1) % (MainActivity.Fav_displayList.size());
                     filePath = MainActivity.Fav_pathList.get(currentIndex);
+                    playlist_list.setSelection(currentIndex);
                     try {
                         MainActivity.mediaPlayer.reset();
                         MainActivity.mediaPlayer.setDataSource(filePath);

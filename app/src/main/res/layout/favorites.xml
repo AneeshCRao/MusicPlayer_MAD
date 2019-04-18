@@ -7,7 +7,10 @@
     <ListView
         android:id="@+id/playlist_list"
         android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@color/design_default_color_primary"
+        />
 
 
 </LinearLayout>

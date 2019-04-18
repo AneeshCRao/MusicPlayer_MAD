@@ -26,13 +26,14 @@ import java.util.ArrayList;
 public class SongSelectFragment extends Fragment {
     private static final String TAG = "SongSelectFragment";
 
+    public static boolean isPlayingFrom = false;
 
     ListView listView;
     ArrayAdapter<String> adapter;
 
     int titleIndex, songPathIndex, artistIndex;
 
-    static int currentIndex = 0;
+    public static int currentIndex = 0;
 
 
     @Nullable
@@ -41,25 +42,7 @@ public class SongSelectFragment extends Fragment {
         View view = inflater.inflate(R.layout.song_select, container, false);
 
         listView = (ListView)view.findViewById(R.id.lv1);
-        MainActivity.mediaPlayer = new MediaPlayer();
 
-        //When song finishes, play next song in list
-        MainActivity.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                currentIndex = (currentIndex + 1) % MainActivity.songNamesList.size();
-                String filePath = MainActivity.pathList.get(currentIndex);
-                try {
-                    mediaPlayer.reset();
-                    mediaPlayer.setDataSource(filePath);
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                }catch(Exception e) {
-                    Toast.makeText(getContext(), "Error",Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-            }
-        });
         DisplaySongs();
         return view;
     }
@@ -85,7 +68,12 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    FavoritesFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
+                    PlayerFragment.playCycle();
                 }catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -118,8 +106,6 @@ public class SongSelectFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView tv = (TextView)view;
-                String s = tv.getText().toString();
                 currentIndex = i;
                 String filePath = MainActivity.pathList.get(i);
 
@@ -129,7 +115,12 @@ public class SongSelectFragment extends Fragment {
                     MainActivity.mediaPlayer.reset();
                     MainActivity.mediaPlayer.setDataSource(filePath);
                     MainActivity.mediaPlayer.prepare();
+                    FavoritesFragment.isPlayingFrom = false;
+                    isPlayingFrom = true;
+                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
+                    PlayerFragment.playCycle();
                 }catch(Exception e) {
                     e.printStackTrace();
                 }

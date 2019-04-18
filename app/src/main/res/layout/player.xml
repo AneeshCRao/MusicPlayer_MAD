@@ -1,15 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/SongNameTV"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player"
-        android:textSize="50dp"
+        android:layout_marginTop="120dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:text="Song Name"/>
+
+    <TextView
+        android:id="@+id/ArtistNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Song Name"/>
+
+
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true"
         />
 
+    <Button
+        android:id="@+id/btnRewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:text="rewind"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnFast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="280dp"
+        android:text="Forward" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:outlineAmbientShadowColor="@color/design_default_color_primary_dark"
+        android:outlineSpotShadowColor="@color/design_default_color_primary_dark"
+        />
+
+    <TextView
+        android:id="@+id/timerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="40dp"
+        android:text="00:00"/>
+
+    <TextView
+        android:id="@+id/fullTimerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="305dp"
+        android:text="00:00"/>
+
+
+
+</RelativeLayout>

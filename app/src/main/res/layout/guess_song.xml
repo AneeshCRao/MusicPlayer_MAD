@@ -31,7 +31,12 @@
         android:text="Shobhit123"
         android:textSize="12sp"
         android:id="@+id/guess_result"
+
+        android:autoLink="web"
         />
+
+
+
 
 
 </LinearLayout>

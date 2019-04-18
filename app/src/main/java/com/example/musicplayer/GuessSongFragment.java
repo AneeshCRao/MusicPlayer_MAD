@@ -16,6 +16,7 @@ public class GuessSongFragment extends Fragment implements View.OnClickListener 
     TextView tv;
     EditText ly,ar;
     Button bt;
+    YoutubeData ytd;
     String lyric="",artist="";
     @Nullable
     @Override
@@ -27,6 +28,10 @@ public class GuessSongFragment extends Fragment implements View.OnClickListener 
         ar=view.findViewById(R.id.guess_artist);
         bt=view.findViewById(R.id.guess_bt);
         bt.setOnClickListener(this);
+
+
+
+
         return view;
     }
 
@@ -36,5 +41,13 @@ public class GuessSongFragment extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
         GuessSongClass gsc = new GuessSongClass();
         gsc.getDetails(getContext(),tv,ly.getText().toString(),ar.getText().toString());
+
+
+//        ytd = new YoutubeData();
+//        Log.d("sending",video.getArtist()+ " "+ video.getTrack());
+//        ytd.execute(video.getArtist()+ " "+ video.getTrack());
+
+
+
     }
 }

@@ -51,7 +51,8 @@ public class FavoritesFragment extends Fragment {
                     MainActivity.mediaPlayer.prepare();
                     SongSelectFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.isPaused = false;
+                    PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                     PlayerFragment.seekBar.setProgress(0);
                     PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
@@ -90,7 +91,8 @@ public class FavoritesFragment extends Fragment {
                     MainActivity.mediaPlayer.prepare();
                     SongSelectFragment.isPlayingFrom = false;
                     isPlayingFrom = true;
-                    PlayerFragment.btnPlay.setText("PAUSE");
+                    PlayerFragment.isPaused = false;
+                    PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                     PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                     MainActivity.mediaPlayer.start();
                     PlayerFragment.playCycle();
@@ -122,7 +124,8 @@ public class FavoritesFragment extends Fragment {
                         MainActivity.mediaPlayer.prepare();
                         SongSelectFragment.isPlayingFrom = false;
                         isPlayingFrom = true;
-                        PlayerFragment.btnPlay.setText("PAUSE");
+                        PlayerFragment.isPaused = false;
+                        PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                         PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
                         MainActivity.mediaPlayer.start();
                         PlayerFragment.playCycle();

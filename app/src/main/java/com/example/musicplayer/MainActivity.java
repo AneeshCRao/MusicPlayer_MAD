@@ -119,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
                     mediaPlayer.reset();
                     mediaPlayer.setDataSource(filePath);
                     mediaPlayer.prepare();
-                    PlayerFragment.btnPlay.setText("PAUSE");
                     PlayerFragment.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+                    PlayerFragment.isPaused = false;
+                    PlayerFragment.btnPlay.setBackgroundResource(R.drawable.pausebutton);
                     MainActivity.mediaPlayer.start();
                     PlayerFragment.playCycle();
                 }catch(Exception e) {
